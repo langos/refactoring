@@ -28,9 +28,9 @@ class HtmlElement
     {
 
         $result = $this->open();
-        // 0
+        
         if ($this->isVoid()) {
-            // 1
+            
             return $result;
         }
 
@@ -43,36 +43,37 @@ class HtmlElement
 
     public function open(): string
     {
-        if (! empty($this->attributes)) {
-            $result = '<'.$this->name.$this->attributes().'>';
+        if ($this->hasAttributes()) {
+            return '<'.$this->name.$this->attributes().'>';
         } else {
-            // Abrir la etiqueta sin atributos
-            $result = '<'.$this->name.'>';
+            return '<'.$this->name.'>';
         }
- 
-        return $result;
+    }
+
+    public function hasAttributes(): bool
+    {
+        return ! empty($this->attributes);
     }
 
     public function attributes(): string
-        {
-            $htmlAttributes = '';
+    {
+        $htmlAttributes = '';
     
-            foreach ($this->attributes as $attribute => $value) {
-                $htmlAttributes .= $this->renderAttribute($attribute, $value);
-            }
-    
-            return $htmlAttributes;
+        foreach ($this->attributes as $attribute => $value) {
+            $htmlAttributes .= $this->renderAttribute($attribute, $value);
         }
+    
+        return $htmlAttributes;
+    }
+
     
     protected function renderAttribute($attribute, $value)
     {
         if (is_numeric($attribute)) {
-            $htmlAttribute = ' '.$value;
-        } else {
-            $htmlAttribute = ' '.$attribute.'="'.htmlentities($value, ENT_QUOTES, 'UTF-8').'"'; // name="value"
+            return ' '.$value;
         }
-    
-        return $htmlAttribute;
+
+        return ' '.$attribute.'="'.htmlentities($value, ENT_QUOTES, 'UTF-8').'"'; // name="value"
     }
 
     public function isVoid(): bool
