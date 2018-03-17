@@ -1,0 +1,25 @@
+{
+    "name": "user/refactoring",
+    "description": "Curso de refactorizzación\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b[\u001b[\u001b[C\u001b[C\u001b[C\u001b[Cación",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Agustin Sanchez",
+            "email": "sanchezfabrega@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}
